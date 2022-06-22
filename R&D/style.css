@@ -3,6 +3,7 @@ body{
 }
 
 #typed{
-    color: green;
+    color: #fe019a;
+    filter: drop-shadow(0 0 5px #fe019a);
     font-size: 20px;
 }
