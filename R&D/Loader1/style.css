@@ -11,6 +11,9 @@ body{
     /* filter: drop-shadow(0 0 5px #fe019a); */
     font-size: 1.15rem;
     animation: neoFlashShadow 1s infinite alternate;
+    min-height: 90vh;
+    margin: 0;
+    padding: 0;
 }
 
 @keyframes neoFlashShadow{

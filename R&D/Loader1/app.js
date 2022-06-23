@@ -42,6 +42,9 @@ function typingText(text, speed) {
             i++;
         } else {
             clearInterval(timer);
+            setTimeout(() => {
+                document.querySelector('#typed').remove();
+            }, 2000);
         }
     }, speed);
 }
