@@ -9,17 +9,25 @@ body{
     margin: 0;
     color: #fe019a;
     /* filter: drop-shadow(0 0 5px #fe019a); */
-    font-size: 1.15rem;
-    animation: neoFlashShadow 0.25s infinite alternate;
+    font-size: 1.5rem;
+    animation: neoFlashShadow 1s infinite alternate;
 }
 
 @keyframes neoFlashShadow{
     0%{
         filter: drop-shadow(0 0 7px #0BE7FB);
-        opacity: 0.90;
+        opacity: 0.85;
+    }
+    25%{
+        opacity: 1;
+
+    }
+    50%{
+        opacity: 0.85;
     }
     100%{
         filter: drop-shadow(0 0 15px #0BE7FB);
         opacity: 1;
+
     }
 }
