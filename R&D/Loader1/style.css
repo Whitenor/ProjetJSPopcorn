@@ -15,7 +15,7 @@ body{
 
 @keyframes neoFlashShadow{
     0%{
-        filter: drop-shadow(0 0 7px #0BE7FB);
+        filter: drop-shadow(0 0 5px #0BE7FB);
         opacity: 0.85;
     }
     25%{
@@ -26,7 +26,7 @@ body{
         opacity: 0.85;
     }
     100%{
-        filter: drop-shadow(0 0 15px #0BE7FB);
+        filter: drop-shadow(0 0 10px #0BE7FB);
         opacity: 1;
 
     }

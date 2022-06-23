@@ -13,7 +13,7 @@ let test =
         <h1 class="formateur papermaker starcraft">Alain</h1>
     </header>
     <section>
-        <div class="exploratice satisfactory jeanine ">Pauline</div>
+        <div class="exploratrice satisfactory jeanine ">Pauline</div>
         <div class="EldenLord VTTiste ">Julien</div>
         <div>Bernard</div>
         <div>Tiana</div>
@@ -45,4 +45,4 @@ function typingText(text, speed) {
         }
     }, speed);
 }
-typingText(test, 15);
+typingText(test, 8);
