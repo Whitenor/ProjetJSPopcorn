@@ -13,12 +13,14 @@ body{
     flex-direction: column;
 }
 
-.main{
+#main{
     position: absolute;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-size: 60px;
 }
 .modalTest{
     width: 100%;
@@ -33,5 +35,5 @@ body{
     align-items: center;
 }
 .hide{
-    display: none;
+    display: none !important;
 }
