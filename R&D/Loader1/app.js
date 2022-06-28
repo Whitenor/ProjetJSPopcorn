@@ -6,7 +6,7 @@ let test =
     <meta name="description" content="C'est l'histoire d'un développeur web et de 12 futur développeur web qui
      se sont mis en tête de faire rayonner l'ACS de Lons le Saunier">
     <link rel="stylesheet" href="style.css">
-    <title>PopCode</title>
+    <title>popCode</title>
 </head>
 <body>
     <header>

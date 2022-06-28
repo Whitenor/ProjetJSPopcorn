@@ -23,31 +23,30 @@ function checkScore(checkNow) {
         score++;
     }
 }
-function hide(){
+function removeHide(){
     main.classList.remove('hide');
 }
-
+function hide(){
+    main.classList.add('hide');
+}
 
 
 
 
 for (let a = 0; a < guessing.length; a++) {
-    guessingMin[a] = guessing[a].toLowerCase();
-    
+    guessingMin[a] = guessing[a].toLowerCase(); 
 }
 
-playground.addEventListener('click', hide);
+main.addEventListener('click', function(){
+    if (testInput.innerHTML ==='') {
+        hide();
+    }
+});
+
 window.addEventListener('keydown', function checking(e) {
+    console.log(e.code);
     if (erreur ===3){
         return;
-    }
-    for (let z = 0; z < letters.length; z++) {
-        if (e.code === "Key"+letters[z] || e.code === letters[z]) {
-            if(main.classList[0] === 'hide'){
-            hide();
-            }
-            document.querySelector('#testInput').innerHTML += e.key
-        }
     }
     if (testInput.innerHTML !== '') {
         if (e.code === "Enter"){
@@ -80,6 +79,17 @@ window.addEventListener('keydown', function checking(e) {
                 }
             }
         }
+        if (e.code ==='Backspace'){
+            testInput.innerHTML = testInput.innerHTML.slice(0, -1);
+        }
+            
     }
-
+    for (let z = 0; z < letters.length; z++) {
+        if (e.code === "Key"+letters[z] || e.code === letters[z]) {
+            if(main.classList[0] === 'hide'){
+            removeHide();
+            }
+            document.querySelector('#testInput').innerHTML += e.key
+        }
+    }
 })
