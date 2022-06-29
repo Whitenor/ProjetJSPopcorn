@@ -1,3 +1,4 @@
+var typed =document.getElementById("typed");
 let test = 
 `<!DOCTYPE html>
 <html lang="fr">
@@ -38,13 +39,14 @@ function typingText(text, speed) {
     var i = 0;
     var timer = setInterval(function () {
         if (i < text.length) {
-            document.getElementById("typed").innerHTML += text.charAt(i);
+            typed.innerHTML += text.charAt(i);
             i++;
         } else {
+            typed.classList.add('test')
             clearInterval(timer);
             setTimeout(() => {
-                document.querySelector('#typed').remove();
-            }, 2000);
+                typed.remove();
+            }, 1000);
         }
     }, speed);
 }
