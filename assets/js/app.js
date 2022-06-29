@@ -42,7 +42,7 @@ function typingText(text, speed) {
             typed.innerHTML += text.charAt(i);
             i++;
         } else {
-            typed.classList.add('test')
+            typed.classList.add('fade')
             clearInterval(timer);
             setTimeout(() => {
                 typed.remove();
