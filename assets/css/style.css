@@ -41,7 +41,7 @@ header{
     flex-direction: column;
     justify-content: flex-start;
     align-items:center;
-    background-image:url("../img/Chargement.webp");
+    background-image:url("../img/Chargement.png");
     background-size: cover;
     background-repeat: no-repeat;
 }

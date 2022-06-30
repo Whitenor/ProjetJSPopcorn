@@ -1,4 +1,6 @@
 var typed =document.getElementById("typed");
+var header = document.querySelector('header');
+var launchGame = document.querySelector('#launchGame');
 let test = 
 `<!DOCTYPE html>
 <html lang="fr">
@@ -51,3 +53,6 @@ function typingText(text, speed) {
     }, speed);
 }
 typingText(test, 8);
+launchGame.addEventListener('click', function () {
+    header.remove();
+})
