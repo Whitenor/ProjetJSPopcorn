@@ -1,7 +1,9 @@
 var typed =document.getElementById("typed");
 var header = document.querySelector('header');
 var launchGame = document.querySelector('#launchGame');
-let test = 
+var mainGame = document.querySelector('.mainGame');
+var test = 1;
+let loader = 
 `<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -52,7 +54,17 @@ function typingText(text, speed) {
         }
     }, speed);
 }
-typingText(test, 8);
+typingText(loader, 8);
 launchGame.addEventListener('click', function () {
     header.remove();
+    mainGame.classList.remove('none');
+})
+mainGame.addEventListener('click', function () {
+    if (test >=3) {
+        return;
+    }
+    document.querySelector('.error'+test).style.color='#0AEFF7';
+    console.log('.error'+test);
+    console.log(typeof('.error'+test));
+    test++;
 })
