@@ -7,7 +7,7 @@ var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semi
 var score = 0;
 var erreur = 0;
 var found = [];
-const guessing = ['HTML', 'CSS', 'JavaScript'];
+const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'Shell', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go',];
 const guessingMin = []
 function checkScore(checkNow) {
     if (score === 2) {
