@@ -112,6 +112,42 @@ header{
 .leftTop > div > span {
     color: rgba(255, 255, 255, 0.3);
 }
+.leftBottom{
+    width: 35vw;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: absolute;
+    left:0;
+    bottom: 0;
+    user-select: none;
+}
+#textZoom{
+    transform: rotate(-90deg) translateX(50%);
+}
+.languageFound{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.zoomZone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+.bar{
+    width: 10;
+    height: 200px;
+    background-color: #D9D9D9;
+    transform: rotate(180deg);
+}
+.fill{
+    width: 10px;
+    height: 25%;
+    background-color: var(--var-light-blue);
+}
 footer{
     user-select: none;
     position: fixed;

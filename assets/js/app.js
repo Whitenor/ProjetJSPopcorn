@@ -2,7 +2,10 @@ var typed =document.getElementById("typed");
 var header = document.querySelector('header');
 var launchGame = document.querySelector('#launchGame');
 var mainGame = document.querySelector('.mainGame');
-var test = 1;
+var testPlus = document.querySelector('.plus');
+var testMin = document.querySelector('.minx');
+var testWidth = 50;
+var errorCountTest = 1;
 let loader = 
 `<!DOCTYPE html>
 <html lang="fr">
@@ -54,17 +57,17 @@ function typingText(text, speed) {
         }
     }, speed);
 }
-typingText(loader, 8);
+typingText(loader, 1);
 launchGame.addEventListener('click', function () {
     header.remove();
     mainGame.classList.remove('none');
 })
-mainGame.addEventListener('click', function () {
-    if (test >=3) {
-        return;
-    }
-    document.querySelector('.error'+test).style.color='#0AEFF7';
-    console.log('.error'+test);
-    console.log(typeof('.error'+test));
-    test++;
-})
+
+
+// Legacy Code
+
+
+// testPlus.addEventListener('click', function(){
+//     testWidth = testWidth + 50;
+//     document.querySelector('.fill').style.width = testWidth + 'px';
+// })
