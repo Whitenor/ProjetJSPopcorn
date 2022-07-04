@@ -13,7 +13,7 @@ body{
     flex-direction: column;
 }
 
-#main{
+#testInput{
     position: absolute;
     height: 100vh;
     display: flex;

@@ -93,8 +93,8 @@ header{
 }
 .rightTop{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 34px;
     width: 10vh;
     height: 10vh;
     box-sizing: border-box;
@@ -105,9 +105,26 @@ header{
     height: 100%;
 }
 .leftTop{
+    padding: 20px 34px;
+    display: flex;
+    align-items: center;
     user-select: none;
     font-family: 'Gotham medium';
     color: white;
+}
+.scoreText{
+    transform: rotate(-90deg);
+    font-size: 8px;
+    color: var(--var-light-blue);
+    padding: 5px 0;
+    border-bottom: solid 1px #d9d9d9;
+}
+.errorAndFound{
+    display: flex;
+    flex-direction: column;
+}
+.error{
+    color: hsla(0, 0%, 100%, 0.30);
 }
 .leftTop > div > span {
     color: rgba(255, 255, 255, 0.3);
@@ -119,8 +136,8 @@ header{
     justify-content: flex-start;
     align-items: flex-end;
     position: absolute;
-    left:0;
-    bottom: 0;
+    left:20px;
+    bottom: 34px;
     user-select: none;
 }
 #textZoom{
@@ -138,21 +155,21 @@ header{
     color: white;
 }
 .bar{
-    width: 10;
+    width: 4px;
     height: 200px;
     background-color: #D9D9D9;
     transform: rotate(180deg);
 }
 .fill{
-    width: 10px;
+    width: 100%;
     height: 25%;
     background-color: var(--var-light-blue);
 }
 footer{
     user-select: none;
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 20px;
+    right: 34px;
     z-index: 11;
 }
 
@@ -161,7 +178,6 @@ footer > div{
     justify-content: space-around;
     flex-wrap: wrap;
     width: 300px;
-    padding: 20px;
 }
 
 footer > div > a{
