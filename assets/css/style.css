@@ -126,9 +126,7 @@ header{
 .error{
     color: hsla(0, 0%, 100%, 0.30);
 }
-.leftTop > div > span {
-    color: rgba(255, 255, 255, 0.3);
-}
+
 .leftBottom{
     width: 35vw;
     box-sizing: border-box;
@@ -172,7 +170,6 @@ footer{
     right: 34px;
     z-index: 11;
 }
-
 footer > div{
     display: flex;
     justify-content: space-around;
@@ -196,15 +193,45 @@ footer > div > a::after{
     height: 1px;
     background-color: #d9d9d9 ;
 }
-
+#Input{
+    position: absolute;
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 60px;
+}
+.overlay{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000000000000000000;
+}
+.overlay > p{
+    position: absolute;
+    bottom: 20%;
+    color: white;
+}
+.none{
+    display: none !important;
+}
 
 .fade{
     animation: fade 1s 1 alternate !important;
 }
-
-.none{
-    display: none;
+.lightBlue{
+    color: var(--var-light-blue);
 }
+
 @keyframes neoFlashShadow{
     0%{
         filter: drop-shadow(0 0 5px #0BE7FB);
