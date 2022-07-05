@@ -19,8 +19,39 @@ var erreur = 0;
 var found = [];
 var foundPos = 0;
 var check;
+var index;
 const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'Shell', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go','Assembly','Swift','Kotlin','R','VBA','Objective-C','Scala','Rust','Dart','Elixir','Clojure','WebAssembly'];
 const guessingMin = [];
+const modalContentArray = [
+    {name: 'HTML', description: 'HyperText Markup Language (HTML) is the standard markup language for creating web pages. It is used for creating pages for the World Wide Web, including mobile apps and other digital online services.'},
+    {name: 'CSS', description: 'Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML. CSS is a cornerstone technology for the World Wide Web, alongside HTML and JavaScript.'},
+    {name: 'JavaScript', description: 'JavaScript is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-parthicular. It is dynamic because it is not a static language, but it is a weakly typed language because it is not strongly or strictly typed.'},
+    {name: 'SQL', description: 'Structured Query Language (SQL) is a programming language used in database management systems. It is used for creating and managing tables, and for retrieving data from those tables.'},
+    {name: 'Python', description: 'Python is a high-level, interpreted, object-oriented programming language. It is designed to be highly readable and easily extensible, but also highly efficient. Python is commonly used in web development, data science, and scientific computing.'},
+    {name: 'Java', description: 'Java is a programming language and computing platform first released by Sun Microsystems in 1995. It is a concurrent, class-based, object-oriented, general-purpose, and garbage-collected dynamic programming language.'},
+    {name: 'Bash', description: 'Bash is a UNIX command language, shell, and scripting language. It is the default shell on most UNIX systems. It is also the default shell for most Linux distributions.'},
+    {name: 'Shell', description: 'Shell is a UNIX command language, shell, and scripting language. It is the default shell on most UNIX systems. It is also the default shell for most Linux distributions.'},
+    {name: 'PowerShell', description: 'PowerShell is a Microsoft Windows command-line interface (CLI) for the Microsoft Windows operating system. It is a fully-featured, open-source command-line shell that can be used to interact with the operating system.'},
+    {name: 'C#', description: 'C# is a multi-parthicular, object-oriented, general-purpose, component-based programming language. It is a static, strongly typed, compiled programming language.'},
+    {name: 'PHP', description: 'PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language. PHP code can be embedded into HTML.'},
+    {name: 'C++', description: 'C++ is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.'},
+    {name: 'Typescript', description: 'Typescript is a programming language developed by Microsoft. It is intended to be a simple, yet powerful, type-safe, and modern programming language.'},
+    {name: 'C', description: 'C is a general-purpose, imperative, imperative-procedural programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.'},
+    {name: 'Ruby', description: 'Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. It was designed and developed in the mid-1990s by Yukihiro Matsumoto in Japan.'},
+    {name: 'Go', description: 'Go is a statically-typed, compiled, compiled programming language that is designed to be a faster, more flexible, and more robust replacement for C. It is currently one of the most popular programming languages in the world.'},
+    {name: 'Assembly', description: 'Assembly is a programming language that is used to create computer programs that can be executed on a computer. Assembly is a low-level programming language, and is used to create computer programs that can be executed on a computer.'},
+    {name: 'Swift', description: 'Swift is a general-purpose, multi-parthicular, compiled programming language developed by Apple Inc. for iOS, macOS, watchOS, tvOS, and Linux.'},
+    {name: 'Kotlin', description: 'Kotlin is a general-purpose, multi-parthicular, compiled programming language developed by JetBrains. It is designed to be a modern, safe, and flexible programming language.'},
+    {name: 'R', description: 'R is a programming language developed by the American Statistical Association. It is a language for statistical computing and graphics.'},
+    {name: 'VBA', description: 'Visual Basic for Applications (VBA) is a programming language developed by Microsoft. It is a general-purpose, object-oriented, and integrated development environment (IDE) for developing Microsoft Windows programs.'},
+    {name: 'Objective-C', description: 'Objective-C is a general-purpose, object-oriented, compiled programming language developed by Apple Inc. for use in the iPhone, iPad, and iPod touch.'},
+    {name: 'Scala', description: 'Scala is a general-purpose, multi-parthicular, compiled programming language developed by the Scala programming language. It is designed to be a functional language.'},
+    {name: 'Rust', description: 'Rust is a general-purpose, compiled, compiled programming language developed by the Rust programming language. It is designed to be a functional language.'},
+    {name: 'Dart', description: 'Dart is a general-purpose, compiled, compiled programming language developed by the Dart programming language. It is designed to be a functional language.'},
+    {name: 'Elixir', description: 'Elixir is a general-purpose, compiled, compiled programming language developed by the Elixir programming language. It is designed to be a functional language.'},
+    {name: 'Clojure', description: 'Clojure is a general-purpose, compiled, compiled programming language developed by the Clojure programming language. It is designed to be a functional language.'},
+    {name: 'WebAssembly', description: 'WebAssembly is a general-purpose, compiled, compiled programming language developed by the WebAssembly programming language. It is designed to be a functional language.'}
+]
 var testWidth = 50;
 var errorCountTest = 1;
 let loader = 
@@ -77,6 +108,7 @@ function typingText(text, speed) {
 }
 function checkScore() {
     if (score === guessing.length - 1) {
+        score++;
         result.innerHTML = 'Vous avez gagné !';
         mainGame.classList.add('none');
         afterGame.classList.remove('none');
@@ -107,6 +139,21 @@ function checkAlreadyGuess(){
     }
     return false;
 }
+function contentModal(indexContent){
+
+
+
+
+    
+    // d'abord , récuper l'index de l'item voulu, puis récuper le contenu de l'item. une fois le contenu recupéré , l'écrire dans une div dans une modal pour pouvoir l'afficher après. la modal doit contenir une croix pour pouvoir la fermer mais aussi une case à cocher qui devras rester cocher si elle l'est , jusqu'a changement de l'utilisateur, afin  de fermer automatiquement la modal après 2s.
+
+
+
+
+
+
+
+}
 typingText(loader, 1);
 launchGame.addEventListener('click', function () {
     header.classList.add('none');
@@ -125,6 +172,8 @@ window.addEventListener('keydown', function checking(e) {
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 if (minInput === guessingMin[i]) {
+                    index = i;
+
                     check = checkAlreadyGuess();
                     if (check === true) {
                         overlay.classList.add('none');
