@@ -232,6 +232,7 @@ footer > div > a::after{
 }
 .result{
     color: white;
+    text-align: center;
 }
 .afterGame > .relaunch{
     font-family: "Gotham medium";
@@ -241,6 +242,7 @@ footer > div > a::after{
     left: 50%;
     transform: translateX(-50%);
     bottom: 20vh;
+    cursor: pointer;
 }
 .none{
     display: none !important;

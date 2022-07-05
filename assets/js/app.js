@@ -10,6 +10,8 @@ var overlay = document.querySelector('#overlay');
 var countFound = document.querySelector('.countFound');
 var result = document.querySelector('.result');
 var afterGame = document.querySelector('.afterGame');
+var relaunch = document.querySelector('.relaunch');
+var classError = ['error1','error2','error3'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var checkCountRotate = 0;
 var score = 0;
@@ -107,7 +109,7 @@ function checkAlreadyGuess(){
 }
 typingText(loader, 1);
 launchGame.addEventListener('click', function () {
-    header.remove();
+    header.classList.add('none');
     mainGame.classList.remove('none');
 })
 overlay.addEventListener('click', function(){
@@ -154,7 +156,7 @@ window.addEventListener('keydown', function checking(e) {
                             Input.innerHTML = '';
                             erreur++;
                             document.querySelector('.error3').classList.add('lightBlue');
-                            result.innerHTML = 'Vous avez perdu !';
+                            result.innerHTML = "Vous avez perdu !<br>Vous avez trouvé "+score+" langages présents dans l'image";
                             mainGame.classList.add('none');
                             afterGame.classList.remove('none');
                             break;
@@ -178,6 +180,19 @@ window.addEventListener('keydown', function checking(e) {
             return;
         }
     }
+})
+relaunch.addEventListener('click', function(){
+    score = 0;
+    erreur = 0;
+    found = [];
+    countFound.innerHTML = score;
+    for (let z = 0; z < classError.length; z++) {
+        if (document.querySelector('.'+classError[z]).classList.contains('lightBlue')) {
+            document.querySelector('.'+classError[z]).classList.remove('lightBlue');
+        }  
+    }
+    afterGame.classList.add('none');
+    header.classList.remove('none');
 })
 
 
