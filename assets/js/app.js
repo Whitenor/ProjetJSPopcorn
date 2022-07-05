@@ -8,11 +8,15 @@ var Input = document.querySelector('#Input');
 var retour = document.querySelector('#return');
 var overlay = document.querySelector('#overlay');
 var countFound = document.querySelector('.countFound');
+var result = document.querySelector('.result');
+var afterGame = document.querySelector('.afterGame');
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var checkCountRotate = 0;
 var score = 0;
 var erreur = 0;
 var found = [];
+var foundPos = 0;
+var check;
 const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'Shell', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go','Assembly','Swift','Kotlin','R','VBA','Objective-C','Scala','Rust','Dart','Elixir','Clojure','WebAssembly'];
 const guessingMin = [];
 var testWidth = 50;
@@ -71,6 +75,9 @@ function typingText(text, speed) {
 }
 function checkScore() {
     if (score === guessing.length - 1) {
+        result.innerHTML = 'Vous avez gagné !';
+        mainGame.classList.add('none');
+        afterGame.classList.remove('none');
         return;
     }
     else{
@@ -89,6 +96,15 @@ function none(){
 for (let a = 0; a < guessing.length; a++) {
     guessingMin[a] = guessing[a].toLowerCase(); 
 }
+function checkAlreadyGuess(){
+    for (let a = 0; a < found.length; a++) {
+        if (found[a] === minInput) {
+            foundPos = a;
+            return true;
+        }
+    }
+    return false;
+}
 typingText(loader, 1);
 launchGame.addEventListener('click', function () {
     header.remove();
@@ -101,23 +117,26 @@ overlay.addEventListener('click', function(){
 });
 
 window.addEventListener('keydown', function checking(e) {
-    console.log(e.code);
-    if (erreur ===3){
-        return;
-    }
     if (Input.innerHTML !== '') {
         if (e.code === "Enter"){
             minInput = Input.innerHTML.toLowerCase();
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 if (minInput === guessingMin[i]) {
+                    check = checkAlreadyGuess();
+                    if (check === true) {
+                        overlay.classList.add('none');
+                        Input.innerHTML = '';
+                        return;
+                    }
                     checkScore();
                     overlay.classList.add('none');
+                    found[foundPos]= guessingMin[i];
+                    foundPos++;
                     return;
                 }
                 checkCountRotate++;
             }
-            console.log(checkCountRotate);
             if (checkCountRotate === guessing.length) {
                 {
                     switch(erreur){
@@ -135,18 +154,23 @@ window.addEventListener('keydown', function checking(e) {
                             Input.innerHTML = '';
                             erreur++;
                             document.querySelector('.error3').classList.add('lightBlue');
+                            result.innerHTML = 'Vous avez perdu !';
+                            mainGame.classList.add('none');
+                            afterGame.classList.remove('none');
                             break;
                     }
                     overlay.classList.add('none');
+                    return;
                 }
             }
         }
         if (e.code ==='Backspace'){
             Input.innerHTML = Input.innerHTML.slice(0, -1);
+            return;
         }    
     }
     for (let z = 0; z < letters.length; z++) {
-        if (e.code === "Key"+letters[z] || e.code === letters[z] || e.key === '-') {
+        if (e.code === "Key"+letters[z] || e.code === letters[z] || e.key === '-' || e.key ==='#' || e.key === '+') {
             if(overlay.classList[0] === 'none'){
             removenone();
             }

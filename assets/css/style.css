@@ -221,6 +221,27 @@ footer > div > a::after{
     bottom: 20%;
     color: white;
 }
+.afterGame{
+    width: 100vw;
+    height: 100vh;
+    background: url("../img/Chargement.png");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.result{
+    color: white;
+}
+.afterGame > .relaunch{
+    font-family: "Gotham medium";
+    font-size: 20px;
+    color: var(--var-rose);
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20vh;
+}
 .none{
     display: none !important;
 }
