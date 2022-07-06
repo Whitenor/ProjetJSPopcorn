@@ -11,6 +11,11 @@ var countFound = document.querySelector('.countFound');
 var result = document.querySelector('.result');
 var afterGame = document.querySelector('.afterGame');
 var relaunch = document.querySelector('.relaunch');
+var modalDesc = document.querySelector('#modalDesc');
+var langageDesc = document.querySelector('#langageDesc');
+var titleModal = document.querySelector('.titleModal');
+var modalImg = document.querySelector('.rowTwo > img');
+var closeModal = document.querySelector('.closeModal');
 var classError = ['error1','error2','error3'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var checkCountRotate = 0;
@@ -20,37 +25,36 @@ var found = [];
 var foundPos = 0;
 var check;
 var index;
-const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'Shell', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go','Assembly','Swift','Kotlin','R','VBA','Objective-C','Scala','Rust','Dart','Elixir','Clojure','WebAssembly'];
+const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go','Assembly','Swift','Kotlin','R','VBA','Objective-C','Scala','Rust','Dart','Elixir','Clojure','WebAssembly'];
 const guessingMin = [];
 const modalContentArray = [
-    {name: 'HTML', description: 'HyperText Markup Language (HTML) is the standard markup language for creating web pages. It is used for creating pages for the World Wide Web, including mobile apps and other digital online services.'},
-    {name: 'CSS', description: 'Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML. CSS is a cornerstone technology for the World Wide Web, alongside HTML and JavaScript.'},
-    {name: 'JavaScript', description: 'JavaScript is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-parthicular. It is dynamic because it is not a static language, but it is a weakly typed language because it is not strongly or strictly typed.'},
-    {name: 'SQL', description: 'Structured Query Language (SQL) is a programming language used in database management systems. It is used for creating and managing tables, and for retrieving data from those tables.'},
-    {name: 'Python', description: 'Python is a high-level, interpreted, object-oriented programming language. It is designed to be highly readable and easily extensible, but also highly efficient. Python is commonly used in web development, data science, and scientific computing.'},
-    {name: 'Java', description: 'Java is a programming language and computing platform first released by Sun Microsystems in 1995. It is a concurrent, class-based, object-oriented, general-purpose, and garbage-collected dynamic programming language.'},
-    {name: 'Bash', description: 'Bash is a UNIX command language, shell, and scripting language. It is the default shell on most UNIX systems. It is also the default shell for most Linux distributions.'},
-    {name: 'Shell', description: 'Shell is a UNIX command language, shell, and scripting language. It is the default shell on most UNIX systems. It is also the default shell for most Linux distributions.'},
-    {name: 'PowerShell', description: 'PowerShell is a Microsoft Windows command-line interface (CLI) for the Microsoft Windows operating system. It is a fully-featured, open-source command-line shell that can be used to interact with the operating system.'},
-    {name: 'C#', description: 'C# is a multi-parthicular, object-oriented, general-purpose, component-based programming language. It is a static, strongly typed, compiled programming language.'},
-    {name: 'PHP', description: 'PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language. PHP code can be embedded into HTML.'},
-    {name: 'C++', description: 'C++ is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.'},
-    {name: 'Typescript', description: 'Typescript is a programming language developed by Microsoft. It is intended to be a simple, yet powerful, type-safe, and modern programming language.'},
-    {name: 'C', description: 'C is a general-purpose, imperative, imperative-procedural programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.'},
-    {name: 'Ruby', description: 'Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. It was designed and developed in the mid-1990s by Yukihiro Matsumoto in Japan.'},
-    {name: 'Go', description: 'Go is a statically-typed, compiled, compiled programming language that is designed to be a faster, more flexible, and more robust replacement for C. It is currently one of the most popular programming languages in the world.'},
-    {name: 'Assembly', description: 'Assembly is a programming language that is used to create computer programs that can be executed on a computer. Assembly is a low-level programming language, and is used to create computer programs that can be executed on a computer.'},
-    {name: 'Swift', description: 'Swift is a general-purpose, multi-parthicular, compiled programming language developed by Apple Inc. for iOS, macOS, watchOS, tvOS, and Linux.'},
-    {name: 'Kotlin', description: 'Kotlin is a general-purpose, multi-parthicular, compiled programming language developed by JetBrains. It is designed to be a modern, safe, and flexible programming language.'},
-    {name: 'R', description: 'R is a programming language developed by the American Statistical Association. It is a language for statistical computing and graphics.'},
-    {name: 'VBA', description: 'Visual Basic for Applications (VBA) is a programming language developed by Microsoft. It is a general-purpose, object-oriented, and integrated development environment (IDE) for developing Microsoft Windows programs.'},
-    {name: 'Objective-C', description: 'Objective-C is a general-purpose, object-oriented, compiled programming language developed by Apple Inc. for use in the iPhone, iPad, and iPod touch.'},
-    {name: 'Scala', description: 'Scala is a general-purpose, multi-parthicular, compiled programming language developed by the Scala programming language. It is designed to be a functional language.'},
-    {name: 'Rust', description: 'Rust is a general-purpose, compiled, compiled programming language developed by the Rust programming language. It is designed to be a functional language.'},
-    {name: 'Dart', description: 'Dart is a general-purpose, compiled, compiled programming language developed by the Dart programming language. It is designed to be a functional language.'},
-    {name: 'Elixir', description: 'Elixir is a general-purpose, compiled, compiled programming language developed by the Elixir programming language. It is designed to be a functional language.'},
-    {name: 'Clojure', description: 'Clojure is a general-purpose, compiled, compiled programming language developed by the Clojure programming language. It is designed to be a functional language.'},
-    {name: 'WebAssembly', description: 'WebAssembly is a general-purpose, compiled, compiled programming language developed by the WebAssembly programming language. It is designed to be a functional language.'}
+    {name: 'HTML', description: 'HyperText Markup Language (HTML) is the standard markup language for creating web pages. It is used for creating pages for the World Wide Web, including mobile apps and other digital online services.', img: 'HTML.svg',alt:'Logo HTML'},
+    {name: 'CSS', description: 'Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language like HTML. CSS is a cornerstone technology for the World Wide Web, alongside HTML and JavaScript.', img: 'CSS.svg',alt:'Logo CSS'},
+    {name: 'JavaScript', description: 'JavaScript is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-parthicular. It is dynamic because it is not a static language, but it is a weakly typed language because it is not strongly or strictly typed.', img: 'JavaScript.svg',alt:'Logo JavaScript'},
+    {name: 'SQL', description: 'Structured Query Language (SQL) is a programming language used in database management systems. It is used for creating and managing tables, and for retrieving data from those tables.', img: 'SQL.svg',alt:'Logo SQL'},
+    {name: 'Python', description: 'Python is a high-level, interpreted, object-oriented programming language. It is designed to be highly readable and easily extensible, but also highly efficient. Python is commonly used in web development, data science, and scientific computing.', img: 'Python.png',alt:'Logo Python'},
+    {name: 'Java', description: 'Java is a programming language and computing platform first released by Sun Microsystems in 1995. It is a concurrent, class-based, object-oriented, general-purpose, and garbage-collected dynamic programming language.', img: 'Java.svg',alt:'Logo Java'},
+    {name: 'Bash', description: 'Bash is a UNIX command language, shell, and scripting language. It is the default shell on most UNIX systems. It is also the default shell for most Linux distributions.', img: 'Bash.png',alt:'Logo Bash'},
+    {name: 'PowerShell', description: 'PowerShell is a Microsoft Windows command-line interface (CLI) for the Microsoft Windows operating system. It is a fully-featured, open-source command-line shell that can be used to interact with the operating system.', img: 'PowerShell.png',alt:'Logo PowerShell'},
+    {name: 'C#', description: 'C# is a multi-parthicular, object-oriented, general-purpose, component-based programming language. It is a static, strongly typed, compiled programming language.', img: 'C#.svg',alt:'Logo C#'},
+    {name: 'PHP', description: 'PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language. PHP code can be embedded into HTML.', img: 'PHP.svg',alt:'Logo PHP'},
+    {name: 'C++', description: 'C++ is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.', img: 'C++.svg',alt:'Logo C++'},
+    {name: 'Typescript', description: 'Typescript is a programming language developed by Microsoft. It is intended to be a simple, yet powerful, type-safe, and modern programming language.', img: 'Typescript.svg',alt:'Logo Typescript'},
+    {name: 'C', description: 'C is a general-purpose, imperative, imperative-procedural programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.', img: 'C.svg',alt:'Logo C'},
+    {name: 'Ruby', description: 'Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. It was designed and developed in the mid-1990s by Yukihiro Matsumoto in Japan.', img: 'Ruby.svg',alt:'Logo Ruby'},
+    {name: 'Go', description: 'Go is a statically-typed, compiled, compiled programming language that is designed to be a faster, more flexible, and more robust replacement for C. It is currently one of the most popular programming languages in the world.', img: 'Go.svg',alt:'Logo Go'},
+    {name: 'Assembly', description: 'Assembly is a programming language that is used to create computer programs that can be executed on a computer. Assembly is a low-level programming language, and is used to create computer programs that can be executed on a computer.', img: 'Assembly.svg',alt:'Logo Assembly'},
+    {name: 'Swift', description: 'Swift is a general-purpose, multi-parthicular, compiled programming language developed by Apple Inc. for iOS, macOS, watchOS, tvOS, and Linux.', img: 'Swift.png',alt:'Logo Swift'},
+    {name: 'Kotlin', description: 'Kotlin is a general-purpose, multi-parthicular, compiled programming language developed by JetBrains. It is designed to be a modern, safe, and flexible programming language.', img: 'Kotlin.svg',alt:'Logo Kotlin'},
+    {name: 'R', description: 'R is a programming language developed by the American Statistical Association. It is a language for statistical computing and graphics.', img: 'R.png',alt:'Logo R'},
+    {name: 'VBA', description: 'Visual Basic for Applications (VBA) is a programming language developed by Microsoft. It is a general-purpose, object-oriented, and integrated development environment (IDE) for developing Microsoft Windows programs.', img: 'VBA.svg',alt:'Logo VBA'},
+    {name: 'Objective-C', description: 'Objective-C is a general-purpose, object-oriented, compiled programming language developed by Apple Inc. for use in the iPhone, iPad, and iPod touch.', img: 'Objective-c.svg',alt:'Logo Objective-C'},
+    {name: 'Scala', description: 'Scala is a general-purpose, multi-parthicular, compiled programming language developed by the Scala programming language. It is designed to be a functional language.', img: 'Scala.svg',alt:'Logo Scala'},
+    {name: 'Rust', description: 'Rust is a general-purpose, compiled, compiled programming language developed by the Rust programming language. It is designed to be a functional language.', img: 'Rust.png',alt:'Logo Rust'},
+    {name: 'Dart', description: 'Dart is a general-purpose, compiled, compiled programming language developed by the Dart programming language. It is designed to be a functional language.', img: 'Dart.svg',alt:'Logo Dart'},
+    {name: 'Elixir', description: 'Elixir is a general-purpose, compiled, compiled programming language developed by the Elixir programming language. It is designed to be a functional language.', img: 'Elixir.png',alt:'Logo Elixir'},
+    {name: 'Clojure', description: 'Clojure is a general-purpose, compiled, compiled programming language developed by the Clojure programming language. It is designed to be a functional language.', img: 'Clojure.svg',alt:'Logo Clojure'},
+    {name: 'WebAssembly', description: 'WebAssembly is a general-purpose, compiled, compiled programming language developed by the WebAssembly programming language. It is designed to be a functional language.', img: 'WebAssembly.svg',alt:'Logo WebAssembly'},
 ]
 var testWidth = 50;
 var errorCountTest = 1;
@@ -89,13 +93,13 @@ let loader =
 </body>
 </html> 
 `;
-var minInput = Input.innerHTML.toLowerCase();
+var minInput = Input.textContent.toLowerCase();
 //function typing text
 function typingText(text, speed) {
     let i = 0;
     var timer = setInterval(function () {
         if (i < text.length) {
-            typed.innerHTML += text.charAt(i);
+            typed.textContent += text.charAt(i);
             i++;
         } else {
             typed.classList.add('fade')
@@ -109,16 +113,16 @@ function typingText(text, speed) {
 function checkScore() {
     if (score === guessing.length - 1) {
         score++;
-        result.innerHTML = 'Vous avez gagné !';
+        result.textContent = 'Vous avez gagné !';
         mainGame.classList.add('none');
         afterGame.classList.remove('none');
         return;
     }
     else{
-        Input.innerHTML = '';
+        Input.textContent = '';
         found[score] = minInput;
         score++;
-        countFound.innerHTML = score;
+        countFound.textContent = score;
     }
 }
 function removenone(){
@@ -139,20 +143,15 @@ function checkAlreadyGuess(){
     }
     return false;
 }
-function contentModal(indexContent){
-
-
-
-
-    
-    // d'abord , récuper l'index de l'item voulu, puis récuper le contenu de l'item. une fois le contenu recupéré , l'écrire dans une div dans une modal pour pouvoir l'afficher après. la modal doit contenir une croix pour pouvoir la fermer mais aussi une case à cocher qui devras rester cocher si elle l'est , jusqu'a changement de l'utilisateur, afin  de fermer automatiquement la modal après 2s.
-
-
-
-
-
-
-
+function contentModal(){
+    for (let i = 0; i < modalContentArray.length; i++) {
+        if (modalContentArray[i].name.toLowerCase() === minInput) {
+            titleModal.textContent = modalContentArray[i].name;
+            langageDesc.textContent = modalContentArray[i].description;
+            modalImg.src = 'assets/img/' + modalContentArray[i].img;
+            modalImg.alt = modalContentArray[i].alt;
+        }        
+    }
 }
 typingText(loader, 1);
 launchGame.addEventListener('click', function () {
@@ -160,15 +159,18 @@ launchGame.addEventListener('click', function () {
     mainGame.classList.remove('none');
 })
 overlay.addEventListener('click', function(){
-    if (Input.innerHTML ==='') {
+    if (Input.textContent ==='') {
         none();
     }
 });
 
 window.addEventListener('keydown', function checking(e) {
-    if (Input.innerHTML !== '') {
+    if (modalDesc.classList.contains('none') === false) {
+    modalDesc.classList.add('none');
+    }
+    if (Input.textContent !== '') {
         if (e.code === "Enter"){
-            minInput = Input.innerHTML.toLowerCase();
+            minInput = Input.textContent.toLowerCase();
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 if (minInput === guessingMin[i]) {
@@ -177,11 +179,13 @@ window.addEventListener('keydown', function checking(e) {
                     check = checkAlreadyGuess();
                     if (check === true) {
                         overlay.classList.add('none');
-                        Input.innerHTML = '';
+                        Input.textContent = '';
                         return;
                     }
                     checkScore();
+                    contentModal();
                     overlay.classList.add('none');
+                    modalDesc.classList.remove('none');
                     found[foundPos]= guessingMin[i];
                     foundPos++;
                     return;
@@ -192,17 +196,17 @@ window.addEventListener('keydown', function checking(e) {
                 {
                     switch(erreur){
                         case 0:
-                            Input.innerHTML = '';
+                            Input.textContent = '';
                             erreur++;
                             document.querySelector('.error1').classList.add('lightBlue');
                             break;
                         case 1:
-                            Input.innerHTML = '';
+                            Input.textContent = '';
                             erreur++;
                             document.querySelector('.error2').classList.add('lightBlue');
                             break;
                         case 2:
-                            Input.innerHTML = '';
+                            Input.textContent = '';
                             erreur++;
                             document.querySelector('.error3').classList.add('lightBlue');
                             result.innerHTML = "Vous avez perdu !<br>Vous avez trouvé "+score+" langages présents dans l'image";
@@ -216,7 +220,7 @@ window.addEventListener('keydown', function checking(e) {
             }
         }
         if (e.code ==='Backspace'){
-            Input.innerHTML = Input.innerHTML.slice(0, -1);
+            Input.textContent = Input.textContent.slice(0, -1);
             return;
         }    
     }
@@ -225,7 +229,7 @@ window.addEventListener('keydown', function checking(e) {
             if(overlay.classList[0] === 'none'){
             removenone();
             }
-            document.querySelector('#Input').innerHTML += e.key
+            document.querySelector('#Input').textContent += e.key
             return;
         }
     }
@@ -234,7 +238,7 @@ relaunch.addEventListener('click', function(){
     score = 0;
     erreur = 0;
     found = [];
-    countFound.innerHTML = score;
+    countFound.textContent = score;
     for (let z = 0; z < classError.length; z++) {
         if (document.querySelector('.'+classError[z]).classList.contains('lightBlue')) {
             document.querySelector('.'+classError[z]).classList.remove('lightBlue');
@@ -243,12 +247,6 @@ relaunch.addEventListener('click', function(){
     afterGame.classList.add('none');
     header.classList.remove('none');
 })
-
-
-// Legacy Code
-
-
-// Plus.addEventListener('click', function(){
-//     testWidth = testWidth + 50;
-//     document.querySelector('.fill').style.width = testWidth + 'px';
-// })
+closeModal.addEventListener('click', function(){
+    modalDesc.classList.add('none');
+})

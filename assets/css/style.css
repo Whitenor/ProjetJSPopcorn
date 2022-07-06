@@ -12,8 +12,12 @@
     --var-rose-light: #ffaaff7e;
     --var-light-blue: #0AEFF7;
 }
-p{
+p, label{
     font-family: "Gotham medium";
+    margin: 0;
+}
+h2{
+    font-family: "Gotham Medium";
     margin: 0;
 }
 body{
@@ -244,10 +248,57 @@ footer > div > a::after{
     bottom: 20vh;
     cursor: pointer;
 }
+#modalDesc{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 99999;
+    display: flex;
+    padding: 100px 100px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: white;
+}
+.blockContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60vw;
+    height: 60vh;
+}
+.rowOne{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.rowTwo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.rowTwo > p{
+    padding: 10px;
+}
+.rowTwo > img{
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+}
+.rowThree{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
 .none{
     display: none !important;
 }
-
 .fade{
     animation: fade 1s 1 alternate !important;
 }
@@ -309,6 +360,6 @@ footer > div > a::after{
 
 
 
-/* @media (hover: none){
+@media (hover: none){
     * {display: none;}
-} */
+}
