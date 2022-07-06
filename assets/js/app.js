@@ -171,6 +171,7 @@ window.addEventListener('keydown', function checking(e) {
     if (Input.textContent !== '') {
         if (e.code === "Enter"){
             minInput = Input.textContent.toLowerCase();
+            minInput = minInput.replace(' ', '-')
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 if (minInput === guessingMin[i]) {
