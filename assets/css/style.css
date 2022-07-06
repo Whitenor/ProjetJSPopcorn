@@ -305,3 +305,10 @@ footer > div > a::after{
         color: var(--var-rose);
     }
 }
+
+
+
+
+/* @media (hover: none){
+    * {display: none;}
+} */
