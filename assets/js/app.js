@@ -263,3 +263,6 @@ closeModal.addEventListener('click', function(){
 languageFound.addEventListener('click',function(){
     modalLanguage.classList.remove('none');
 })
+modalLanguage.addEventListener('click',function(){
+    modalLanguage.classList.add('none');
+});

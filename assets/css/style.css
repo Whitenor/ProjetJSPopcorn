@@ -305,6 +305,10 @@ footer > div > a::after{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0,0,0,0.75);
+}
+#modalLanguage > ul > li{
+    color: white;
 }
 .none{
     display: none !important;
