@@ -190,7 +190,7 @@ window.addEventListener('keydown', function checking(e) {
                     contentModal();
                     overlay.classList.add('none');
                     modalDesc.classList.remove('none');
-                    listLanguageFound.innerHTML += '<li>' + guessing[i] + '</li>';
+                    listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i] + '</li>';
                     found[foundPos]= guessingMin[i];
                     foundPos++;
                     if (checkBox.checked === true) {
