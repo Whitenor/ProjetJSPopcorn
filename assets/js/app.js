@@ -156,7 +156,7 @@ function contentModal(){
         }        
     }
 }
-typingText(loader, 1);
+typingText(loader, 7);
 launchGame.addEventListener('click', function () {
     header.classList.add('none');
     mainGame.classList.remove('none');
