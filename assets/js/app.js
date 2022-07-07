@@ -16,6 +16,10 @@ var langageDesc = document.querySelector('#langageDesc');
 var titleModal = document.querySelector('.titleModal');
 var modalImg = document.querySelector('.rowTwo > img');
 var closeModal = document.querySelector('.closeModal');
+var checkBox = document.querySelector('#checkBoxClosing');
+var languageFound = document.querySelector('.languageFound');
+var modalLanguage = document.querySelector('#modalLanguage');
+var listLanguageFound = document.querySelector('#modalLanguage > ul')
 var classError = ['error1','error2','error3'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var checkCountRotate = 0;
@@ -94,7 +98,6 @@ let loader =
 </html> 
 `;
 var minInput = Input.textContent.toLowerCase();
-//function typing text
 function typingText(text, speed) {
     let i = 0;
     var timer = setInterval(function () {
@@ -187,8 +190,14 @@ window.addEventListener('keydown', function checking(e) {
                     contentModal();
                     overlay.classList.add('none');
                     modalDesc.classList.remove('none');
+                    listLanguageFound.innerHTML += '<li>' + guessing[i] + '</li>';
                     found[foundPos]= guessingMin[i];
                     foundPos++;
+                    if (checkBox.checked === true) {
+                        setTimeout(() => {
+                            modalDesc.classList.add('none');
+                        }, 2000);
+                    }
                     return;
                 }
                 checkCountRotate++;
@@ -250,4 +259,7 @@ relaunch.addEventListener('click', function(){
 })
 closeModal.addEventListener('click', function(){
     modalDesc.classList.add('none');
+})
+languageFound.addEventListener('click',function(){
+    modalLanguage.classList.remove('none');
 })

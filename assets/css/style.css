@@ -296,6 +296,16 @@ footer > div > a::after{
     align-items: center;
     width: 100%;
 }
+#modalLanguage{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .none{
     display: none !important;
 }
@@ -360,6 +370,6 @@ footer > div > a::after{
 
 
 
-@media (hover: none){
+@media (hover: none) and (max-width:1024px){
     * {display: none;}
 }
