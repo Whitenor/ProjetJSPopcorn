@@ -28,7 +28,6 @@ var erreur = 0;
 var found = [];
 var foundPos = 0;
 var check;
-var index;
 const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go','Assembly','Swift','Kotlin','R','VBA','Objective-C','Scala','Rust','Dart','Elixir','Clojure','WebAssembly'];
 const guessingMin = [];
 const modalContentArray = [
@@ -67,7 +66,7 @@ let loader =
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="C'est l'histoire d'un développeur web et de 12 futur développeur web qui
+    <meta name="description" content="C'est l'histoire d'un développeur web et de 12 futurs développeurs web qui
      se sont mis en tête de faire rayonner l'ACS de Lons le Saunier">
     <link rel="stylesheet" href="style.css">
     <title>popCode</title>
@@ -77,8 +76,8 @@ let loader =
         <h1 class="formateur papermaker starcraft">Alain</h1>
     </header>
     <section>
-        <div class="exploratrice satisfactory jeanine ">Pauline</div>
-        <div class="EldenLord VTTiste ">Julien</div>
+        <div class="exploratrice satisfactory jeanine">Pauline</div>
+        <div class="EldenLord VTTiste">Julien</div>
         <div>Bernard</div>
         <div>Tiana</div>
         <div class="nature travail">Chris</div>
@@ -88,10 +87,10 @@ let loader =
         <div>Vincent</div>
         <div class="theRat">Natan</div>
         <div class ="satisfactory organise automatise">Léo</div>
-        <div class="civilisation satisfactory weeb">Antoine</div>
+        <div class="civilization satisfactory weeb">Antoine</div>
     </section>
     <footer>
-        <span id="en flamme">nos ordinateurs</span>
+        <span id="en flammes">nos ordinateurs</span>
     </footer>
     <script src="app.js"></script>
 </body>
@@ -178,8 +177,6 @@ window.addEventListener('keydown', function checking(e) {
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 if (minInput === guessingMin[i]) {
-                    index = i;
-
                     check = checkAlreadyGuess();
                     if (check === true) {
                         overlay.classList.add('none');

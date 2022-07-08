@@ -94,6 +94,15 @@ header{
     height: 100vh;
     background: url("../img/mainGameBG.jpg");
     background-size: cover;
+    box-sizing: border-box;
+}
+#bgMainGame{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 }
 .rightTop{
     position: absolute;
@@ -115,6 +124,7 @@ header{
     user-select: none;
     font-family: 'Gotham medium';
     color: white;
+    z-index: 1000000000000;
 }
 .scoreText{
     transform: rotate(-90deg);
