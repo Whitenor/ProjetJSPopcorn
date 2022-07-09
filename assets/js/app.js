@@ -155,7 +155,7 @@ function contentModal(){
         }        
     }
 }
-typingText(loader, 7);
+typingText(loader, 0);
 launchGame.addEventListener('click', function () {
     header.classList.add('none');
     mainGame.classList.remove('none');
@@ -263,3 +263,18 @@ languageFound.addEventListener('click',function(){
 modalLanguage.addEventListener('click',function(){
     modalLanguage.classList.add('none');
 });
+
+zoom({
+    active: "zoom-active", // Class added to container when it is zoomed
+    transition: "zoom-transition", // Class added to images when they are being animated, class is removed after animation is finished
+    visible: "visible", // Class added to images after they are loaded,
+    zoom: "zoom" // Image container class
+  }, {
+    scaleDefault: 2, // Used on doubleclick, doubletap and resize
+    scaleDifference: 0.5, // Used on wheel zoom
+    scaleMax: 10, // Maximum zoom
+    scaleMin: 1, // Minimum zoom
+    scrollDisable: true, // Disable page scrolling when zooming an image
+    transitionDuration: 200, // This should correspond with zoom-transition transition duration
+    doubleclickDelay: 300 // // Delay between clicks - used when scripts decides if user performed doubleclick or not
+  });

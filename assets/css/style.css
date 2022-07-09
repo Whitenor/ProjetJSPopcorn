@@ -7,6 +7,9 @@
     font-family: "Gotham Bold";
     src: url(../fonts/GothamBold.ttf);
 }
+*{
+    overflow: hidden !important;
+}
 :root{
     --var-rose: #FFAAFF;
     --var-rose-light: #ffaaff7e;
@@ -91,18 +94,28 @@ header{
     position: relative;
     padding: 0;
     margin: 0;
+    width: 100vw;
     height: 100vh;
-    background: url("../img/mainGameBG.jpg");
-    background-size: cover;
     box-sizing: border-box;
+}
+.zoom{
+    width: 100%;
+    height: 100%;
 }
 #bgMainGame{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+.zoom-transition{
+    transition: -moz-transform ease 200ms;
+    transition: -ms-transform ease 200ms;
+    transition: -o-transform ease 200ms;
+    transition: -webkit-transform ease 200ms;
+    transition: transform ease 200ms;
 }
 .rightTop{
     position: absolute;
@@ -118,6 +131,9 @@ header{
     height: 100%;
 }
 .leftTop{
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: 20px 34px;
     display: flex;
     align-items: center;
@@ -136,6 +152,8 @@ header{
 .errorAndFound{
     display: flex;
     flex-direction: column;
+    z-index: 1000000000000;
+
 }
 .error{
     color: hsla(0, 0%, 100%, 0.30);
