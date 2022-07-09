@@ -114,7 +114,6 @@ function typingText(text, speed) {
 }
 function checkScore() {
     if (score === guessing.length - 1) {
-        score++;
         result.textContent = 'Vous avez gagné !';
         mainGame.classList.add('none');
         afterGame.classList.remove('none');
@@ -152,7 +151,8 @@ function contentModal(){
             langageDesc.textContent = modalContentArray[i].description;
             modalImg.src = 'assets/img/' + modalContentArray[i].img;
             modalImg.alt = modalContentArray[i].alt;
-        }        
+        }
+        break;  
     }
 }
 typingText(loader, 0);
@@ -200,7 +200,6 @@ window.addEventListener('keydown', function checking(e) {
                 checkCountRotate++;
             }
             if (checkCountRotate === guessing.length) {
-                {
                     switch(erreur){
                         case 0:
                             Input.textContent = '';
@@ -216,14 +215,13 @@ window.addEventListener('keydown', function checking(e) {
                             Input.textContent = '';
                             erreur++;
                             document.querySelector('.error3').classList.add('lightBlue');
-                            result.innerHTML = "Vous avez perdu !<br>Vous avez trouvé "+score+" langages présents dans l'image";
+                            result.innerHTML = "Vous avez perdu ! <br> Vous avez trouvé "+score+" langages présents dans l'image";
                             mainGame.classList.add('none');
                             afterGame.classList.remove('none');
                             break;
                     }
                     overlay.classList.add('none');
                     return;
-                }
             }
         }
         if (e.code ==='Backspace'){
@@ -247,9 +245,7 @@ relaunch.addEventListener('click', function(){
     found = [];
     countFound.textContent = score;
     for (let z = 0; z < classError.length; z++) {
-        if (document.querySelector('.'+classError[z]).classList.contains('lightBlue')) {
-            document.querySelector('.'+classError[z]).classList.remove('lightBlue');
-        }  
+        document.querySelector('.'+classError[z]).classList.remove('lightBlue');
     }
     afterGame.classList.add('none');
     header.classList.remove('none');
