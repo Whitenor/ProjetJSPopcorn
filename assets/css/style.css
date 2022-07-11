@@ -210,14 +210,14 @@ footer > div{
     width: 300px;
 }
 
-footer > div > p{
+footer > div > a{
     text-decoration: none;
     position: relative;
     color: white;
     font-family: "Gotham medium";
     font-size: 12px;
 }
-footer > div > p::after{
+footer > div > a::after{
     content: "";
     position: absolute;
     bottom: -3px;
