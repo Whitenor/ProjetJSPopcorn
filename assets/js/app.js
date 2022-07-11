@@ -197,7 +197,6 @@ window.addEventListener('keydown', function checking(e) {
                     modalDesc.classList.remove('none');
                     listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i] + '</li>';
                     found[foundPos]= guessingMin[i];
-                    foundPos++;
                     if (checkBox.checked === true) {
                         setTimeout(() => {
                             modalDesc.classList.add('none');
