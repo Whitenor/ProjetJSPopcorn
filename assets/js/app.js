@@ -153,8 +153,8 @@ function contentModal(){
             langageDesc.textContent = modalContentArray[i].description;
             modalImg.src = 'assets/img/' + modalContentArray[i].img;
             modalImg.alt = modalContentArray[i].alt;
+            break;  
         }
-        break;  
     }
 }
 typingText(loader, 0);
