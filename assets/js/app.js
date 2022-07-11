@@ -270,7 +270,6 @@ languageFound.addEventListener('click',function(){
 modalLanguage.addEventListener('click',function(){
     modalLanguage.classList.add('none');
 });
-
 zoom({
     active: "zoom-active", // Class added to container when it is zoomed
     transition: "zoom-transition", // Class added to images when they are being animated, class is removed after animation is finished
@@ -285,7 +284,6 @@ zoom({
     transitionDuration: 200, // This should correspond with zoom-transition transition duration
     doubleclickDelay: 300 // // Delay between clicks - used when scripts decides if user performed doubleclick or not
 });
-
 mainGame.addEventListener('wheel', function(e){
     filling.style.height = 10*bgMainGame.dataset.scale+'%';
 })
