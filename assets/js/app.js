@@ -19,7 +19,9 @@ var closeModal = document.querySelector('.closeModal');
 var checkBox = document.querySelector('#checkBoxClosing');
 var languageFound = document.querySelector('.languageFound');
 var modalLanguage = document.querySelector('#modalLanguage');
-var listLanguageFound = document.querySelector('#modalLanguage > ul')
+var bgMainGame = document.querySelector('#bgMainGame');
+var filling = document.querySelector('.fill');
+var listLanguageFound = document.querySelector('#modalLanguage > ul');
 var classError = ['error1','error2','error3'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var checkCountRotate = 0;
@@ -167,6 +169,9 @@ overlay.addEventListener('click', function(){
 });
 
 window.addEventListener('keydown', function checking(e) {
+    if (mainGame.classList.contains('none')) {
+        return;
+    }
     if (modalDesc.classList.contains('none') === false) {
     modalDesc.classList.add('none');
     }
@@ -273,4 +278,8 @@ zoom({
     scrollDisable: true, // Disable page scrolling when zooming an image
     transitionDuration: 200, // This should correspond with zoom-transition transition duration
     doubleclickDelay: 300 // // Delay between clicks - used when scripts decides if user performed doubleclick or not
-  });
+});
+
+mainGame.addEventListener('wheel', function(e){
+    filling.style.height = 10*bgMainGame.dataset.scale+'%';
+})
