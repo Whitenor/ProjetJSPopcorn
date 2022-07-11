@@ -117,8 +117,11 @@ function typingText(text, speed) {
 function checkScore() {
     if (score === guessing.length - 1) {
         result.textContent = 'Vous avez gagné !';
-        mainGame.classList.add('none');
+        afterGame.classList.add('fadeIn');
         afterGame.classList.remove('none');
+        setTimeout(() => {
+            mainGame.classList.add('none');
+        }, 1000);
         return;
     }
     else{
@@ -221,8 +224,11 @@ window.addEventListener('keydown', function checking(e) {
                             erreur++;
                             document.querySelector('.error3').classList.add('lightBlue');
                             result.innerHTML = "Vous avez perdu ! <br> Vous avez trouvé "+score+" langages présents dans l'image";
-                            mainGame.classList.add('none');
+                            afterGame.classList.add('fadeIn');
                             afterGame.classList.remove('none');
+                            setTimeout(() => {
+                                mainGame.classList.add('none');
+                            }, 1000);
                             break;
                     }
                     overlay.classList.add('none');

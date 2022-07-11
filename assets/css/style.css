@@ -209,7 +209,6 @@ footer > div{
     flex-wrap: wrap;
     width: 300px;
 }
-
 footer > div > a{
     text-decoration: none;
     position: relative;
@@ -256,6 +255,9 @@ footer > div > a::after{
     color: white;
 }
 .afterGame{
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background: url("../img/Chargement.png");
@@ -263,6 +265,9 @@ footer > div > a::after{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.fadeIn{
+    animation: fadeInAfterGame 1s 1 alternate !important ;
 }
 .result{
     color: white;
@@ -398,6 +403,14 @@ footer > div > a::after{
         filter: drop-shadow(0 0 10px #0BE7FB);
         opacity: 0.5;
         color: var(--var-rose);
+    }
+}
+@keyframes fadeInAfterGame {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }
 
