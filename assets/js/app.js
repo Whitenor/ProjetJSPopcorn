@@ -126,8 +126,9 @@ function checkScore() {
     }
     else{
         Input.textContent = '';
-        found[score] = minInput;
         score++;
+        localStorage.setItem('score', score);
+        console.log(localStorage.getItem('score'));
         countFound.textContent = score;
     }
 }
@@ -143,7 +144,6 @@ for (let a = 0; a < guessing.length; a++) {
 function checkAlreadyGuess(){
     for (let a = 0; a < found.length; a++) {
         if (found[a] === minInput) {
-            foundPos = a;
             return true;
         }
     }
@@ -196,12 +196,13 @@ window.addEventListener('keydown', function checking(e) {
                     overlay.classList.add('none');
                     modalDesc.classList.remove('none');
                     listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i] + '</li>';
-                    found[foundPos]= guessingMin[i];
+                    found.push(guessingMin[i]);
                     if (checkBox.checked === true) {
                         setTimeout(() => {
                             modalDesc.classList.add('none');
                         }, 2000);
                     }
+                    console.log(found);
                     return;
                 }
                 checkCountRotate++;
