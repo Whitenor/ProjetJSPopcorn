@@ -84,7 +84,7 @@ header{
     color: white;
     text-align: center;
 }
-#launchGame{
+#launchGame, #launchSave{
     font-size: 13px;
     margin-top: 5vh;
     color: var(--var-rose);

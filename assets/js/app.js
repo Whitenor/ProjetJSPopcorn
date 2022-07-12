@@ -21,6 +21,7 @@ var languageFound = document.querySelector('.languageFound');
 var modalLanguage = document.querySelector('#modalLanguage');
 var bgMainGame = document.querySelector('#bgMainGame');
 var filling = document.querySelector('.fill');
+var launchSave= document.querySelector('#launchSave');
 var listLanguageFound = document.querySelector('#modalLanguage > ul');
 var classError = ['error1','error2','error3'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -99,6 +100,9 @@ let loader =
 </html> 
 `;
 var minInput = Input.textContent.toLowerCase();
+console.log(localStorage.getItem('found'));
+console.log(localStorage.getItem('score'));
+console.log(localStorage.getItem('error'));
 function typingText(text, speed) {
     let i = 0;
     var timer = setInterval(function () {
@@ -128,7 +132,6 @@ function checkScore() {
         Input.textContent = '';
         score++;
         localStorage.setItem('score', score);
-        console.log(localStorage.getItem('score'));
         countFound.textContent = score;
     }
 }
@@ -143,7 +146,7 @@ for (let a = 0; a < guessing.length; a++) {
 }
 function checkAlreadyGuess(){
     for (let a = 0; a < found.length; a++) {
-        if (found[a] === minInput) {
+        if (found[a].toLowerCase() === minInput) {
             return true;
         }
     }
@@ -164,6 +167,9 @@ typingText(loader, 0);
 launchGame.addEventListener('click', function () {
     header.classList.add('none');
     mainGame.classList.remove('none');
+    localStorage.removeItem('found');
+    localStorage.removeItem('score');
+    localStorage.removeItem('error');
 })
 overlay.addEventListener('click', function(){
     if (Input.textContent ==='') {
@@ -196,7 +202,9 @@ window.addEventListener('keydown', function checking(e) {
                     overlay.classList.add('none');
                     modalDesc.classList.remove('none');
                     listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i] + '</li>';
-                    found.push(guessingMin[i]);
+                    found.push(guessing[i]);
+                    localStorage.setItem('found', found);
+                    console.log(localStorage.getItem('found'));
                     if (checkBox.checked === true) {
                         setTimeout(() => {
                             modalDesc.classList.add('none');
@@ -213,11 +221,13 @@ window.addEventListener('keydown', function checking(e) {
                             Input.textContent = '';
                             erreur++;
                             document.querySelector('.error1').classList.add('lightBlue');
+                            localStorage.setItem('error', erreur);
                             break;
                         case 1:
                             Input.textContent = '';
                             erreur++;
                             document.querySelector('.error2').classList.add('lightBlue');
+                            localStorage.setItem('error', erreur);
                             break;
                         case 2:
                             Input.textContent = '';
@@ -287,3 +297,30 @@ zoom({
 mainGame.addEventListener('wheel', function(e){
     filling.style.height = 10*bgMainGame.dataset.scale+'%';
 })
+if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem('score')) < guessing.length) {
+    launchSave.addEventListener('click', function(){
+        score = parseInt(localStorage.getItem('score'));
+        erreur = parseInt(localStorage.getItem('error'));
+        found = localStorage.getItem('found');
+        found = found.split(',');
+        for (let i = 0; i < found.length; i++) {
+            listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + found[i] + '</li>';
+        }
+        countFound.textContent = score;
+        switch(erreur){
+            case 1:
+                document.querySelector('.error1').classList.add('lightBlue');
+                break;
+            case 2:
+                document.querySelector('.error2').classList.add('lightBlue');
+                break;
+        }
+        header.classList.add('none');
+        mainGame.classList.remove('none');
+    })
+}
+else{
+    launchSave.classList.add('none');
+}
+    
+
