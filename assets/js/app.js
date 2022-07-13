@@ -170,6 +170,8 @@ launchGame.addEventListener('click', function () {
     localStorage.removeItem('found');
     localStorage.removeItem('score');
     localStorage.removeItem('error');
+    found = [];
+    listLanguageFound.innerHTML = found;
 })
 overlay.addEventListener('click', function(){
     if (Input.textContent ==='') {
