@@ -26,12 +26,13 @@ var listLanguageFound = document.querySelector('#modalLanguage > ul');
 var classError = ['error1','error2','error3'];
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Semicolon', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var checkCountRotate = 0;
+var countForPercent;
 var score = 0;
 var erreur = 0;
 var found = [];
 var foundPos = 0;
 var check;
-const guessing = ['HTML', 'CSS', 'JavaScript', 'SQL', 'Python', 'Java', 'Bash', 'PowerShell','C#','PHP', 'C++', 'Typescript', 'C', 'Ruby','Go','Assembly','Swift','Kotlin','R','VBA','Objective-C','Scala','Rust','Dart','Elixir','Clojure','WebAssembly'];
+const guessing = [{name:"HTML", percent:""},{name:"CSS", percent:""},{name:"JavaScript", percent:""},{name:"SQL", percent:""},{name:"Python", percent:""},{name:"Java", percent:""},{name:"Bash", percent:""},{name:"PowerShell", percent:""},{name:"C#", percent:""},{name:"PHP", percent:""},{name:"C++", percent:""},{name:"TypeScript", percent:""},{name:"C", percent:""},{name:"Ruby", percent:""},{name:"Go", percent:""},{name:"Assembly", percent:""},{name:"Swift", percent:""},{name:"Kotlin", percent:""},{name:"R", percent:""},{name:"VBA", percent:""},{name:"Objective-C", percent:""},{name:"Scala", percent:""},{name:"Rust", percent:""},{name:"Dart", percent:""},{name:"Elixir", percent:""},{name:"Clojure", percent:""},{name:"Assembly", percent:""}];
 const guessingMin = [];
 const modalContentArray = [
     {name: 'HTML', description: 'HyperText Markup Language (HTML) is the standard markup language for creating web pages. It is used for creating pages for the World Wide Web, including mobile apps and other digital online services.', img: 'HTML.svg',alt:'Logo HTML'},
@@ -100,9 +101,7 @@ let loader =
 </html> 
 `;
 var minInput = Input.textContent.toLowerCase();
-console.log(localStorage.getItem('found'));
-console.log(localStorage.getItem('score'));
-console.log(localStorage.getItem('error'));
+
 function typingText(text, speed) {
     let i = 0;
     var timer = setInterval(function () {
@@ -141,20 +140,17 @@ function removenone(){
 function none(){
     overlay.classList.add('none');
 }
-for (let a = 0; a < guessing.length; a++) {
-    guessingMin[a] = guessing[a].toLowerCase(); 
-}
-function checkAlreadyGuess(){
+function checkAlreadyGuess(target){
     for (let a = 0; a < found.length; a++) {
-        if (found[a].toLowerCase() === minInput) {
+        if (found[a] === target) {
             return true;
         }
     }
     return false;
 }
-function contentModal(){
+function contentModal(target){
     for (let i = 0; i < modalContentArray.length; i++) {
-        if (modalContentArray[i].name.toLowerCase() === minInput) {
+        if (modalContentArray[i].name === target) {
             titleModal.textContent = modalContentArray[i].name;
             langageDesc.textContent = modalContentArray[i].description;
             modalImg.src = 'assets/img/' + modalContentArray[i].img;
@@ -162,6 +158,25 @@ function contentModal(){
             break;  
         }
     }
+}
+for (let a = 0; a < guessing.length; a++) {
+    guessingMin[a] = guessing[a].name.toLowerCase(); 
+}
+for (let a = 0; a < guessing.length; a++) {
+    countForPercent = 0;
+    for (let b = 0; b < guessingMin[a].length; b++) {
+        countForPercent++;
+    }
+    countForPercent = Math.ceil((countForPercent/100)*80);
+    guessing[a].percent = countForPercent;
+}
+for (let a = 0; a < guessing.length; a++) {
+    countForPercent = 0;
+    for (let b = 0; b < guessing[a].name.length; b++) {
+        countForPercent++;
+    }
+    countForPercent = Math.ceil((countForPercent/100)*80);
+    guessing[a].percent = countForPercent;
 }
 typingText(loader, 0);
 launchGame.addEventListener('click', function () {
@@ -178,7 +193,6 @@ overlay.addEventListener('click', function(){
         none();
     }
 });
-
 window.addEventListener('keydown', function checking(e) {
     if (mainGame.classList.contains('none')) {
         return;
@@ -190,30 +204,36 @@ window.addEventListener('keydown', function checking(e) {
         if (e.code === "Enter"){
             minInput = Input.textContent.toLowerCase();
             minInput = minInput.replace(' ', '-')
-            checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
-                if (minInput === guessingMin[i]) {
-                    check = checkAlreadyGuess();
-                    if (check === true) {
+                countForPercent = 0;
+                checkCountRotate = 0;
+                if (minInput.length >= guessing[i].percent) {
+                    for (let x = 0; x < minInput.length; x++) {
+                        if (minInput[x]===guessingMin[i][x]) {
+                                countForPercent++;
+                        }
+                    }
+                    if (countForPercent >= guessing[i].percent){
+                        check = checkAlreadyGuess(guessing[i]);
+                        if (check === true) {
+                            overlay.classList.add('none');
+                            Input.textContent = '';
+                            return;
+                        }
+                        checkScore();
+                        contentModal(guessing[i].name);
                         overlay.classList.add('none');
-                        Input.textContent = '';
-                        return;
-                    }
-                    checkScore();
-                    contentModal();
-                    overlay.classList.add('none');
-                    modalDesc.classList.remove('none');
-                    listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i] + '</li>';
-                    found.push(guessing[i]);
-                    localStorage.setItem('found', found);
-                    console.log(localStorage.getItem('found'));
-                    if (checkBox.checked === true) {
-                        setTimeout(() => {
-                            modalDesc.classList.add('none');
-                        }, 2000);
-                    }
-                    console.log(found);
+                        modalDesc.classList.remove('none');
+                        listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i].name + '</li>';
+                        found.push(guessing[i].name);
+                        localStorage.setItem('found', JSON.stringify(found));
+                        if (checkBox.checked === true) {
+                            setTimeout(() => {
+                                modalDesc.classList.add('none');
+                            }, 2000);
+                        }
                     return;
+                    }
                 }
                 checkCountRotate++;
             }
@@ -303,8 +323,7 @@ if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem
     launchSave.addEventListener('click', function(){
         score = parseInt(localStorage.getItem('score'));
         erreur = parseInt(localStorage.getItem('error'));
-        found = localStorage.getItem('found');
-        found = found.split(',');
+        found = JSON.parse(localStorage.getItem('found'));
         for (let i = 0; i < found.length; i++) {
             listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + found[i] + '</li>';
         }
@@ -323,4 +342,4 @@ if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem
 }
 else{
     launchSave.classList.add('none');
-}
+}   
