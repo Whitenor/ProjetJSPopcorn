@@ -218,6 +218,7 @@ footer > div > a::after{
     background-color: #d9d9d9 ;
 }
 #Input{
+    font-family: 'Montserrat';  
     position: absolute;
     width: 100vh;
     height: 100vh;

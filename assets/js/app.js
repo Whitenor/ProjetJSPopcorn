@@ -203,16 +203,17 @@ window.addEventListener('keydown', function checking(e) {
     if (Input.textContent !== '') {
         if (e.code === "Enter"){
             minInput = Input.textContent.toLowerCase();
-            minInput = minInput.replace(' ', '-')
+            checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 countForPercent = 0;
-                checkCountRotate = 0;
                 if (minInput.length >= guessing[i].percent) {
                     for (let x = 0; x < minInput.length; x++) {
                         if (minInput[x]===guessingMin[i][x]) {
                                 countForPercent++;
                         }
                     }
+                    console.log(countForPercent);
+                    console.log(guessing[i].percent);
                     if (countForPercent >= guessing[i].percent){
                         check = checkAlreadyGuess(guessing[i]);
                         if (check === true) {
@@ -275,6 +276,7 @@ window.addEventListener('keydown', function checking(e) {
     for (let z = 0; z < letters.length; z++) {
         if (e.code === "Key"+letters[z] || e.code === letters[z] || e.key === '-' || e.key ==='#' || e.key === '+') {
             if(overlay.classList[0] === 'none'){
+            clearTimeout()
             removenone();
             }
             document.querySelector('#Input').textContent += e.key
