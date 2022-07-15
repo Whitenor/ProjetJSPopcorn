@@ -361,6 +361,9 @@ footer > div > a::after{
         color: var(--var-rose);
     }
 }
+.wrongDevice{
+    display: none;
+}
 @keyframes fade {
     0%{
         opacity: 0.75;
@@ -408,5 +411,25 @@ footer > div > a::after{
 
 
 @media (hover: none) and (max-width:1024px){
-    * {display: none;}
+    body > * {
+        display: none;
+    }
+    .wrongDevice{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: #000;
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+    }
+    .wrongDevice > p{
+        color: white;
+        font-size: 20px;
+        text-align: center;
+    }
 }
