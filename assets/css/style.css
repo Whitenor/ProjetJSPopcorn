@@ -411,7 +411,7 @@ footer > div > a::after{
         opacity: 1;
     }
 }
-@media (hover: none) and (max-width:1024px){
+@media screen and (hover: none) and (max-width:1024px){
     body > * {
         display: none;
     }

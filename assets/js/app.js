@@ -344,4 +344,5 @@ if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem
 }
 else{
     launchSave.classList.add('none');
-}   
+}  
+console.log(guessing); 
