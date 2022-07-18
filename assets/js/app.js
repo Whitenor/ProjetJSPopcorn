@@ -215,7 +215,7 @@ window.addEventListener('keydown', function checking(e) {
                     console.log(countForPercent);
                     console.log(guessing[i].percent);
                     if (countForPercent >= guessing[i].percent){
-                        check = checkAlreadyGuess(guessing[i]);
+                        check = checkAlreadyGuess(guessing[i].name);
                         if (check === true) {
                             overlay.classList.add('none');
                             Input.textContent = '';
