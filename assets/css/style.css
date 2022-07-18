@@ -149,7 +149,6 @@ header{
 .error{
     color: hsla(0, 0%, 100%, 0.30);
 }
-
 .leftBottom{
     width: 35vw;
     box-sizing: border-box;
@@ -166,8 +165,14 @@ header{
 }
 .languageFound{
     display: flex;
+    gap: 5px;
     align-items: center;
     color: white;
+    border: solid 1px #d9d9d9;
+    padding: 5px 10px;
+}
+.languageFound > p {
+    font-size: 10px;
 }
 .zoomZone{
     display: flex;
@@ -407,10 +412,6 @@ footer > div > a::after{
         opacity: 1;
     }
 }
-
-
-
-
 @media (hover: none) and (max-width:1024px){
     body > * {
         display: none;
