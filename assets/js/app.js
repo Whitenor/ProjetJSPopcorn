@@ -32,7 +32,7 @@ var erreur = 0;
 var found = [];
 var foundPos = 0;
 var check;
-const guessing = [{name:"HTML", percent:""},{name:"CSS", percent:""},{name:"JavaScript", percent:""},{name:"SQL", percent:""},{name:"Python", percent:""},{name:"Java", percent:""},{name:"Bash", percent:""},{name:"PowerShell", percent:""},{name:"C#", percent:""},{name:"PHP", percent:""},{name:"C++", percent:""},{name:"TypeScript", percent:""},{name:"C", percent:""},{name:"Ruby", percent:""},{name:"Go", percent:""},{name:"Assembly", percent:""},{name:"Swift", percent:""},{name:"Kotlin", percent:""},{name:"R", percent:""},{name:"VBA", percent:""},{name:"Objective-C", percent:""},{name:"Scala", percent:""},{name:"Rust", percent:""},{name:"Dart", percent:""},{name:"Elixir", percent:""},{name:"Clojure", percent:""},{name:"Assembly", percent:""}];
+const guessing = [{name:"HTML", percent:""},{name:"CSS", percent:""},{name:"JavaScript", percent:""},{name:"SQL", percent:""},{name:"Python", percent:""},{name:"Java", percent:""},{name:"Bash", percent:""},{name:"PowerShell", percent:""},{name:"C#", percent:""},{name:"PHP", percent:""},{name:"C++", percent:""},{name:"TypeScript", percent:""},{name:"C", percent:""},{name:"Ruby", percent:""},{name:"Go", percent:""},{name:"Assembly", percent:""},{name:"Swift", percent:""},{name:"Kotlin", percent:""},{name:"R", percent:""},{name:"VBA", percent:""},{name:"Objective-C", percent:""},{name:"Scala", percent:""},{name:"Rust", percent:""},{name:"Dart", percent:""},{name:"Elixir", percent:""},{name:"Clojure", percent:""},{name:"WebAssembly", percent:""}];
 const guessingMin = [];
 const modalContentArray = [
     {name: 'HTML', description: 'HyperText Markup Language (HTML) is the standard markup language for creating web pages. It is used for creating pages for the World Wide Web, including mobile apps and other digital online services.', img: 'HTML.svg',alt:'Logo HTML'},
@@ -46,7 +46,7 @@ const modalContentArray = [
     {name: 'C#', description: 'C# is a multi-parthicular, object-oriented, general-purpose, component-based programming language. It is a static, strongly typed, compiled programming language.', img: 'Csharp.svg',alt:'Logo C#'},
     {name: 'PHP', description: 'PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language. PHP code can be embedded into HTML.', img: 'PHP.svg',alt:'Logo PHP'},
     {name: 'C++', description: 'C++ is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.', img: 'C++.svg',alt:'Logo C++'},
-    {name: 'Typescript', description: 'Typescript is a programming language developed by Microsoft. It is intended to be a simple, yet powerful, type-safe, and modern programming language.', img: 'Typescript.svg',alt:'Logo Typescript'},
+    {name: 'TypeScript', description: 'Typescript is a programming language developed by Microsoft. It is intended to be a simple, yet powerful, type-safe, and modern programming language.', img: 'Typescript.svg',alt:'Logo Typescript'},
     {name: 'C', description: 'C is a general-purpose, imperative, imperative-procedural programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.', img: 'C.svg',alt:'Logo C'},
     {name: 'Ruby', description: 'Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. It was designed and developed in the mid-1990s by Yukihiro Matsumoto in Japan.', img: 'Ruby.svg',alt:'Logo Ruby'},
     {name: 'Go', description: 'Go is a statically-typed, compiled, compiled programming language that is designed to be a faster, more flexible, and more robust replacement for C. It is currently one of the most popular programming languages in the world.', img: 'Go.svg',alt:'Logo Go'},
@@ -101,6 +101,29 @@ let loader =
 </html> 
 `;
 var minInput = Input.textContent.toLowerCase();
+const str1 = '';
+const str2 = '';
+const levenshteinDistance = (str1 = '', str2 = '') => {
+   const track = Array(str2.length + 1).fill(null).map(() =>
+   Array(str1.length + 1).fill(null));
+   for (let i = 0; i <= str1.length; i += 1) {
+      track[0][i] = i;
+   }
+   for (let j = 0; j <= str2.length; j += 1) {
+      track[j][0] = j;
+   }
+   for (let j = 1; j <= str2.length; j += 1) {
+      for (let i = 1; i <= str1.length; i += 1) {
+         const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+         track[j][i] = Math.min(
+            track[j][i - 1] + 1, // deletion
+            track[j - 1][i] + 1, // insertion
+            track[j - 1][i - 1] + indicator, // substitution
+         );
+      }
+   }
+   return track[str2.length][str1.length];
+};
 
 function typingText(text, speed) {
     let i = 0;
@@ -125,6 +148,9 @@ function checkScore() {
         setTimeout(() => {
             mainGame.classList.add('none');
         }, 1000);
+        localStorage.removeItem('found');
+        localStorage.removeItem('score');
+        localStorage.removeItem('error');
         return;
     }
     else{
@@ -164,19 +190,11 @@ for (let a = 0; a < guessing.length; a++) {
 }
 for (let a = 0; a < guessing.length; a++) {
     countForPercent = 0;
-    for (let b = 0; b < guessingMin[a].length; b++) {
-        countForPercent++;
-    }
-    countForPercent = Math.ceil((countForPercent/100)*80);
-    guessing[a].percent = countForPercent;
-}
-for (let a = 0; a < guessing.length; a++) {
-    countForPercent = 0;
     for (let b = 0; b < guessing[a].name.length; b++) {
         countForPercent++;
     }
     countForPercent = Math.ceil((countForPercent/100)*80);
-    guessing[a].percent = countForPercent;
+    guessing[a].percent = guessing[a].name.length - countForPercent;
 }
 typingText(loader, 0);
 launchGame.addEventListener('click', function () {
@@ -205,15 +223,7 @@ window.addEventListener('keydown', function checking(e) {
             minInput = Input.textContent.toLowerCase();
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
-                countForPercent = 0;
-                if (minInput.length >= guessing[i].percent) {
-                    for (let x = 0; x < minInput.length; x++) {
-                        if (minInput[x]===guessingMin[i][x]) {
-                                countForPercent++;
-                        }
-                    }
-                    console.log(countForPercent);
-                    console.log(guessing[i].percent);
+                if (levenshteinDistance(minInput, guessingMin[i]) <= guessing[i].percent) {
                     if (countForPercent >= guessing[i].percent){
                         check = checkAlreadyGuess(guessing[i].name);
                         if (check === true) {
