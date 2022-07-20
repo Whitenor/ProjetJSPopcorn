@@ -1,3 +1,6 @@
+//TODO:Revoir le code pour voir ce qui peut etre réduit et/ou optimisé
+//TODO:ajout d'un tableau d'objet pour les mentions légals et les cookies ( ou voir pour utiliser un fichier JSON) 
+
 var typed =document.getElementById("typed");
 var header = document.querySelector('header');
 var launchGame = document.querySelector('#launchGame');
