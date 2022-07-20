@@ -358,4 +358,8 @@ if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem
 else{
     launchSave.classList.add('none');
 }  
-console.log(guessing); 
+fetch('assets/js/legals.json')
+.then(responce => responce.json().then(responce => {
+    document.querySelector('.legalsTitle').insertAdjacentHTML('beforeend', responce.title)
+    document.querySelector('.legals').insertAdjacentHTML('beforeend', responce.content)
+}))
