@@ -220,7 +220,7 @@ window.addEventListener('keydown', function checking(e) {
         return;
     }
     if (modalDesc.classList.contains('none') === false) {
-    modalDesc.classList.add('none');
+        modalDesc.classList.add('none');
     }
     if (Input.textContent !== '') {
         if (e.code === "Enter"){
