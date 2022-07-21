@@ -1,6 +1,7 @@
 //TODO:Revoir le code pour voir ce qui peut etre réduit et/ou optimisé
 //TODO:ajout d'un tableau d'objet pour les mentions légals et les cookies ( ou voir pour utiliser un fichier JSON) 
-
+var legals = document.querySelector('.legalsButton');
+var modalLegals = document.querySelector('.legals');
 var typed =document.getElementById("typed");
 var header = document.querySelector('header');
 var launchGame = document.querySelector('#launchGame');
@@ -223,6 +224,7 @@ window.addEventListener('keydown', function checking(e) {
     }
     if (Input.textContent !== '') {
         if (e.code === "Enter"){
+            clearTimeout();
             minInput = Input.textContent.toLowerCase();
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
@@ -238,7 +240,7 @@ window.addEventListener('keydown', function checking(e) {
                         contentModal(guessing[i].name);
                         overlay.classList.add('none');
                         modalDesc.classList.remove('none');
-                        listLanguageFound.innerHTML = listLanguageFound.innerHTML+ '<li>' + guessing[i].name + '</li>';
+                        listLanguageFound.innerHTML = listLanguageFound.innerHTML+ "<li id='"+ guessing[i].name +"'>" + guessing[i].name + "</li>";
                         found.push(guessing[i].name);
                         localStorage.setItem('found', JSON.stringify(found));
                         if (checkBox.checked === true) {
@@ -333,7 +335,13 @@ zoom({
 });
 mainGame.addEventListener('wheel', function(e){
     filling.style.height = 10*bgMainGame.dataset.scale+'%';
-})
+});
+legals.addEventListener('click', function(){
+    modalLegals.classList.remove('none');
+});
+modalLegals.addEventListener('click', function(){
+    modalLegals.classList.add('none');
+});
 if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem('score')) < guessing.length) {
     launchSave.addEventListener('click', function(){
         score = parseInt(localStorage.getItem('score'));
@@ -361,5 +369,5 @@ else{
 fetch('assets/js/legals.json')
 .then(responce => responce.json().then(responce => {
     document.querySelector('.legalsTitle').insertAdjacentHTML('beforeend', responce.title)
-    document.querySelector('.legals').insertAdjacentHTML('beforeend', responce.content)
+    document.querySelector('.legals > div').insertAdjacentHTML('beforeend', responce.content)
 }))
