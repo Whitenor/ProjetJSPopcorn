@@ -376,6 +376,12 @@ footer > div > p::after{
     justify-content: center;
     align-items: center;
 }
+.titleLegalsInContent{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: underline;
+}
 .none{
     display: none !important;
 }

@@ -319,6 +319,9 @@ relaunch.addEventListener('click', function(){
     }
     afterGame.classList.add('none');
     header.classList.remove('none');
+    if (modalDesc.classList.contains('none') === false) {
+        modalDesc.classList.add('none');
+    }
 })
 closeModal.addEventListener('click', function(){
     modalDesc.classList.add('none');
