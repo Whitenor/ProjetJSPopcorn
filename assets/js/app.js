@@ -147,6 +147,8 @@ function typingText(text, speed) {
 }
 function checkScore() {
     if (score === guessing.length - 1) {
+        clearTimeout();
+        setTimeout(() => {
         result.textContent = 'Vous avez gagné !';
         afterGame.classList.add('fadeIn');
         afterGame.classList.remove('none');
@@ -157,6 +159,7 @@ function checkScore() {
         localStorage.removeItem('score');
         localStorage.removeItem('error');
         return;
+        }, 5000);
     }
     else{
         Input.textContent = '';
