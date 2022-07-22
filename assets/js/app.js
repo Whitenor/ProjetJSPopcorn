@@ -322,6 +322,10 @@ relaunch.addEventListener('click', function(){
     if (modalDesc.classList.contains('none') === false) {
         modalDesc.classList.add('none');
     }
+    titleModal.textContent = '';
+    langageDesc.textContent = '';
+    modalImg.src = '';
+    modalImg.alt = '';
 })
 closeModal.addEventListener('click', function(){
     modalDesc.classList.add('none');
