@@ -1,31 +1,18 @@
-//TODO:Revoir le code pour voir ce qui peut etre réduit et/ou optimisé
-//TODO:ajout d'un tableau d'objet pour les mentions légals et les cookies ( ou voir pour utiliser un fichier JSON) 
 var rowThree = document.querySelector('.rowThree');
-var legals = document.querySelector('.legalsButton');
 var modalLegals = document.querySelector('.legals');
 var typed =document.getElementById("typed");
 var header = document.querySelector('header');
-var launchGame = document.querySelector('#launchGame');
 var mainGame = document.querySelector('.mainGame');
-var Plus = document.querySelector('.plus');
-var Min = document.querySelector('.minx');
 var Input = document.querySelector('#Input');
-var retour = document.querySelector('#return');
 var overlay = document.querySelector('#overlay');
 var countFound = document.querySelector('.countFound');
 var result = document.querySelector('.result');
 var afterGame = document.querySelector('.afterGame');
-var relaunch = document.querySelector('.relaunch');
 var modalDesc = document.querySelector('#modalDesc');
 var langageDesc = document.querySelector('#langageDesc');
 var titleModal = document.querySelector('.titleModal');
 var modalImg = document.querySelector('.rowTwo > img');
-var closeModal = document.querySelector('.closeModal');
-var checkBox = document.querySelector('#checkBoxClosing');
-var languageFound = document.querySelector('.languageFound');
 var modalLanguage = document.querySelector('#modalLanguage');
-var bgMainGame = document.querySelector('#bgMainGame');
-var filling = document.querySelector('.fill');
 var launchSave= document.querySelector('#launchSave');
 var listLanguageFound = document.querySelector('#modalLanguage > ul');
 var classError = ['error1','error2','error3'];
@@ -149,16 +136,16 @@ function checkScore() {
     if (score === guessing.length - 1) {
         clearTimeout();
         setTimeout(() => {
-        result.textContent = 'Vous avez gagné !';
-        afterGame.classList.add('fadeIn');
-        afterGame.classList.remove('none');
-        setTimeout(() => {
-            mainGame.classList.add('none');
-        }, 1000);
-        localStorage.removeItem('found');
-        localStorage.removeItem('score');
-        localStorage.removeItem('error');
-        return;
+            result.textContent = 'Vous avez gagné !';
+            afterGame.classList.add('fadeIn');
+            afterGame.classList.remove('none');
+            setTimeout(() => {
+                mainGame.classList.add('none');
+            }, 1000);
+            localStorage.removeItem('found');
+            localStorage.removeItem('score');
+            localStorage.removeItem('error');
+            return;
         }, 5000);
     }
     else{
@@ -205,7 +192,7 @@ for (let a = 0; a < guessing.length; a++) {
     guessing[a].percent = guessing[a].name.length - countForPercent;
 }
 typingText(loader, 0);
-launchGame.addEventListener('click', function () {
+document.querySelector('#launchGame').addEventListener('click', function () {
     header.classList.add('none');
     mainGame.classList.remove('none');
     localStorage.removeItem('found');
@@ -256,7 +243,7 @@ window.addEventListener('keydown', function checking(e) {
                         listLanguageFound.innerHTML = listLanguageFound.innerHTML+ "<li id='"+ guessing[i].name +"'>" + guessing[i].name + "</li>";
                         found.push(guessing[i].name);
                         localStorage.setItem('found', JSON.stringify(found));
-                        if (checkBox.checked === true) {
+                        if (document.querySelector('#checkBoxClosing').checked === true) {
                             setTimeout(() => {
                                 modalDesc.classList.add('none');
                             }, 2000);
@@ -312,7 +299,7 @@ window.addEventListener('keydown', function checking(e) {
         }
     }
 })
-relaunch.addEventListener('click', function(){
+document.querySelector('.relaunch').addEventListener('click', function(){
     score = 0;
     erreur = 0;
     found = [];
@@ -330,10 +317,10 @@ relaunch.addEventListener('click', function(){
     modalImg.src = '';
     modalImg.alt = '';
 })
-closeModal.addEventListener('click', function(){
+document.querySelector('.closeModal').addEventListener('click', function(){
     modalDesc.classList.add('none');
 })
-languageFound.addEventListener('click',function(){
+document.querySelector('.languageFound').addEventListener('click',function(){
     modalLanguage.classList.remove('none');
 })
 modalLanguage.addEventListener('click',function(e){
@@ -361,9 +348,9 @@ zoom({
     doubleclickDelay: 300 // // Delay between clicks - used when scripts decides if user performed doubleclick or not
 });
 mainGame.addEventListener('wheel', function(e){
-    filling.style.height = 10*bgMainGame.dataset.scale+'%';
+    document.querySelector('.fill').style.height = 10*document.querySelector('#bgMainGame').dataset.scale+'%';
 });
-legals.addEventListener('click', function(){
+document.querySelector('.legalsButton').addEventListener('click', function(){
     modalLegals.classList.remove('none');
 });
 modalLegals.addEventListener('click', function(){
