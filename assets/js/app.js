@@ -367,6 +367,7 @@ if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem
                 document.querySelector('.error1').classList.add('lightBlue');
                 break;
             case 2:
+                document.querySelector('.error1').classList.add('lightBlue');
                 document.querySelector('.error2').classList.add('lightBlue');
                 break;
         }
