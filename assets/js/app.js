@@ -237,7 +237,6 @@ window.addEventListener('keydown', function checking(e) {
             checkCountRotate = 0;
             for (let i = 0; i < guessing.length; i++) {
                 if (levenshteinDistance(minInput, guessingMin[i]) <= guessing[i].percent) {
-                    if (countForPercent >= guessing[i].percent){
                         check = checkAlreadyGuess(guessing[i].name);
                         if (check === true) {
                             overlay.classList.add('none');
@@ -261,7 +260,6 @@ window.addEventListener('keydown', function checking(e) {
                         }
                     return;
                     }
-                }
                 checkCountRotate++;
             }
             if (checkCountRotate === guessing.length) {
@@ -353,7 +351,7 @@ document.querySelector('.legalsButton').addEventListener('click', function(){
 modalLegals.addEventListener('click', function(){
     modalLegals.classList.add('none');
 });
-if (parseInt(localStorage.getItem('error')) < 2 || parseInt(localStorage.getItem('score')) < guessing.length) {
+if (parseInt(localStorage.getItem('error')) < 2 && parseInt(localStorage.getItem('score')) < guessing.length) {
     launchSave.addEventListener('click', function(){
         score = parseInt(localStorage.getItem('score'));
         erreur = parseInt(localStorage.getItem('error'));
